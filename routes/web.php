@@ -13,24 +13,34 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('welcome');
+//});
+//
+//Route::get('/about', function () {
+//    return "Hi about page";
+//});
+//
+//Route::get('/contact', function () {
+//    return "hi I am contact";
+//});
+//
+//Route::get('/post/{id}/{name}', function($id, $name){
+//    return "This is post number ". $id . " " . $name;
+//});
+//
+//Route::get('admin/posts/example', array('as'=>'admin.home' ,function(){
+//    $url = route('admin.home');
+//
+//    return "this url is ". $url;
+//} ));
 
-Route::get('/about', function () {
-    return "Hi about page";
-});
+use App\Http\Controllers as C;
 
-Route::get('/contact', function () {
-    return "hi I am contact";
-});
+//Route::get('/post/{id}', [C\PostsController::class, 'index']);
 
-Route::get('/post/{id}/{name}', function($id, $name){
-    return "This is post number ". $id . " " . $name;
-});
+//Route::resource('posts', C\PostsController::class);
 
-Route::get('admin/posts/example', array('as'=>'admin.home' ,function(){
-    $url = route('admin.home');
+Route::get('/contact', [C\PostsController::class, 'contact' ]);
 
-    return "this url is ". $url;
-} ));
+Route::get('post/{id}/{name}/{password}', [C\PostsController::class, 'show_post' ]);
